@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block main %}
+
+<div class="row my-5">
+  <div class="col-md-6 card p-5 mx-auto  mt-5">
+    <h1 class="fw-bold text-center text-danger">Login Info</h1>
+    <form class="mx-1 mx-md-4" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="input-control mt-3">
+        <label for="{{ form.username.id_for_label}}">Username</label>
+        <input type="text" class="form-control" name="{{ form.username.name }}" value="{{ form.username.name }}">
+        {% if form.username.errors %}
+        <span>{{ form.username.errrors}}</span>
+        {% endif %}
+      </div>
+      <div class="input-control my-3">
+        <label for="{{ form.password.id_for_label}}">Password</label>
+        <input type="password" class="form-control" name="{{ form.password.name }}" value="{{ form.password.name }}">
+      </div>
+
+      <button type="submit" class="btn btn-danger my-2">Login</button><br><br>
+      <a href="{% url 'register' %}">Create New Account??</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
